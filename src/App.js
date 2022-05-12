@@ -1,5 +1,11 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable no-plusplus */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import uniqueid from 'uniqueid';
+import { v4 as uuidv4 } from 'uuid';
+import './App.css';
+import Preview from './components/Preview';
+import Edit from './components/Edit';
 
 class App extends Component {
   constructor() {
@@ -16,6 +22,24 @@ class App extends Component {
       workExperience: [],
       education: [],
     };
+
+    this.toEditMode = this.toEditMode.bind(this);
+    this.toPreviewMode = this.toPreviewMode.bind(this);
+    this.changeName = this.changeName.bind(this);
+    this.changeNumber = this.changeNumber.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changeGithub = this.changeGithub.bind(this);
+    this.changeWorkCompany = this.changeWorkCompany.bind(this);
+    this.changeWorkPosition = this.changeWorkPosition.bind(this);
+    this.changeWorkStartDate = this.changeWorkStartDate.bind(this);
+    this.changeWorkEndDate = this.changeWorkEndDate.bind(this);
+    this.changeWorkDescription = this.changeWorkDescription.bind(this);
+    this.changeEducationSchool = this.changeEducationSchool.bind(this);
+    this.changeEducationDegree = this.changeEducationDegree.bind(this);
+    this.changeEducationStartDate = this.changeEducationStartDate.bind(this);
+    this.changeEducationEndDate = this.changeEducationEndDate.bind(this);
+    this.submitAddWork = this.submitAddWork.bind(this);
+    this.submitAddEducation = this.submitAddEducation.bind(this);
   }
 
   toEditMode() {
@@ -67,14 +91,15 @@ class App extends Component {
   }
 
   changeWorkCompany(e) {
-    const workId = e.target.id;
+    const workId = e.target.parentNode.id;
     const newCompany = e.target.value;
-    const newWork = this.state.workExperience;
+    const newWork = [...this.state.workExperience];
 
     for (let i = 0; i < newWork.length; i++) {
       if (newWork[i].workId === workId) {
-        newWork[i].position = newCompany;
-        break;
+        const workItem = { ...newWork[i] };
+        workItem.company = newCompany;
+        newWork[i] = workItem;
       }
     }
 
@@ -84,13 +109,15 @@ class App extends Component {
   }
 
   changeWorkPosition(e) {
-    const workId = e.target.id;
+    const workId = e.target.parentNode.id;
     const newPosition = e.target.value;
-    const newWork = this.state.workExperience;
+    const newWork = [...this.state.workExperience];
 
     for (let i = 0; i < newWork.length; i++) {
       if (newWork[i].workId === workId) {
-        newWork[i].position = newPosition;
+        const workItem = { ...newWork[i] };
+        workItem.position = newPosition;
+        newWork[i] = workItem;
         break;
       }
     }
@@ -101,13 +128,15 @@ class App extends Component {
   }
 
   changeWorkStartDate(e) {
-    const workId = e.target.id;
+    const workId = e.target.parentNode.id;
     const newStartDate = e.target.value;
-    const newWork = this.state.workExperience;
+    const newWork = [...this.state.workExperience];
 
     for (let i = 0; i < newWork.length; i++) {
       if (newWork[i].workId === workId) {
-        newWork[i].startDate = newStartDate;
+        const workItem = { ...newWork[i] };
+        workItem.startDate = newStartDate;
+        newWork[i] = workItem;
         break;
       }
     }
@@ -118,13 +147,34 @@ class App extends Component {
   }
 
   changeWorkEndDate(e) {
-    const workId = e.target.id;
+    const workId = e.target.parentNode.id;
     const newEndDate = e.target.value;
-    const newWork = this.state.workExperience;
+    const newWork = [...this.state.workExperience];
 
     for (let i = 0; i < newWork.length; i++) {
       if (newWork[i].workId === workId) {
-        newWork[i].endDate = newEndDate;
+        const workItem = { ...newWork[i] };
+        workItem.endDate = newEndDate;
+        newWork[i] = workItem;
+        break;
+      }
+    }
+
+    this.setState({
+      workExperience: newWork,
+    });
+  }
+
+  changeWorkDescription(e) {
+    const workId = e.target.parentNode.id;
+    const newDescription = e.target.value;
+    const newWork = [...this.state.workExperience];
+
+    for (let i = 0; i < newWork.length; i++) {
+      if (newWork[i].workId === workId) {
+        const workItem = { ...newWork[i] };
+        workItem.description = newDescription;
+        newWork[i] = workItem;
         break;
       }
     }
@@ -135,13 +185,15 @@ class App extends Component {
   }
 
   changeEducationSchool(e) {
-    const educationId = e.target.id;
+    const educationId = e.target.parentNode.id;
     const newSchool = e.target.value;
-    const newEducation = this.state.education;
+    const newEducation = [...this.state.education];
 
     for (let i = 0; i < newEducation.length; i++) {
       if (newEducation[i].educationId === educationId) {
-        newEducation[i].school = newSchool;
+        const eduItem = { ...newEducation[i] };
+        eduItem.school = newSchool;
+        newEducation[i] = eduItem;
         break;
       }
     }
@@ -152,13 +204,15 @@ class App extends Component {
   }
 
   changeEducationDegree(e) {
-    const educationId = e.target.id;
+    const educationId = e.target.parentNode.id;
     const newDegree = e.target.value;
-    const newEducation = this.state.education;
+    const newEducation = [...this.state.education];
 
     for (let i = 0; i < newEducation.length; i++) {
       if (newEducation[i].educationId === educationId) {
-        newEducation[i].degree = newDegree;
+        const eduItem = { ...newEducation[i] };
+        eduItem.degree = newDegree;
+        newEducation[i] = eduItem;
         break;
       }
     }
@@ -169,13 +223,15 @@ class App extends Component {
   }
 
   changeEducationStartDate(e) {
-    const educationId = e.target.id;
+    const educationId = e.target.parentNode.id;
     const newStartDate = e.target.value;
-    const newEducation = this.state.education;
+    const newEducation = [...this.state.education];
 
     for (let i = 0; i < newEducation.length; i++) {
       if (newEducation[i].educationId === educationId) {
-        newEducation[i].startDate = newStartDate;
+        const eduItem = { ...newEducation[i] };
+        eduItem.startDate = newStartDate;
+        newEducation[i] = eduItem;
         break;
       }
     }
@@ -186,13 +242,15 @@ class App extends Component {
   }
 
   changeEducationEndDate(e) {
-    const educationId = e.target.id;
+    const educationId = e.target.parentNode.id;
     const newEndDate = e.target.value;
-    const newEducation = this.state.education;
+    const newEducation = [...this.state.education];
 
     for (let i = 0; i < newEducation.length; i++) {
       if (newEducation[i].educationId === educationId) {
-        newEducation[i].endDate = newEndDate;
+        const eduItem = { ...newEducation[i] };
+        eduItem.endDate = newEndDate;
+        newEducation[i] = eduItem;
         break;
       }
     }
@@ -202,24 +260,23 @@ class App extends Component {
     });
   }
 
-  submitAddWork(e) {
-    e.preventDefault();
+  submitAddWork() {
     const newWork = {
-      workId: uniqueid(),
+      workId: uuidv4(),
       company: '',
       position: '',
       startDate: '',
       endDate: '',
+      description: '',
     };
     this.setState({
       workExperience: this.state.workExperience.concat(newWork),
     });
   }
 
-  submitAddEducation(e) {
-    e.preventDefault();
+  submitAddEducation() {
     const newEducation = {
-      educationId: uniqueid(),
+      educationId: uuidv4(),
       school: '',
       degree: '',
       startDate: '',
@@ -233,10 +290,31 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
-        <div className="button-container">
-          <button id="edit-button" className="current-mode" type="submit">Edit Mode</button>
-          <button id="preview-button" type="submit">Preview Mode</button>
-        </div>
+        <Edit
+          personalInfo={this.state.personalInfo}
+          workExperience={this.state.workExperience}
+          education={this.state.education}
+          changeName={(e) => { this.changeName(e); }}
+          changeNumber={(e) => { this.changeNumber(e); }}
+          changeEmail={(e) => { this.changeEmail(e); }}
+          changeGithub={(e) => { this.changeGithub(e); }}
+          changeWorkCompany={(e) => { this.changeWorkCompany(e); }}
+          changeWorkPosition={(e) => { this.changeWorkPosition(e); }}
+          changeWorkStartDate={(e) => { this.changeWorkStartDate(e); }}
+          changeWorkEndDate={(e) => { this.changeWorkEndDate(e); }}
+          changeWorkDescription={(e) => { this.changeWorkDescription(e); }}
+          changeEducationSchool={(e) => { this.changeEducationSchool(e); }}
+          changeEducationDegree={(e) => { this.changeEducationDegree(e); }}
+          changeEducationStartDate={(e) => { this.changeEducationStartDate(e); }}
+          changeEducationEndDate={(e) => { this.changeEducationEndDate(e); }}
+          submitAddWork={() => { this.submitAddWork(); }}
+          submitAddEducation={() => { this.submitAddEducation(); }}
+        />
+        <Preview
+          personalInfo={this.state.personalInfo}
+          workExperience={this.state.workExperience}
+          education={this.state.education}
+        />
       </div>
     );
   }
