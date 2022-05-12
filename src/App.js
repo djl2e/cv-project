@@ -287,6 +287,26 @@ class App extends Component {
     });
   }
 
+  deleteWork(e) {
+    const workId = e.target.parentNode.id;
+    const newWork = [...this.state.workExperience];
+    const filteredWork = newWork.filter((work) => work.workId !== workId);
+
+    this.setState({
+      workExperience: filteredWork,
+    });
+  }
+
+  deleteEducation(e) {
+    const educationId = e.target.parentNode.id;
+    const newEducation = [...this.state.education];
+    const filteredEducation = newEducation.filter((edu) => edu.educationId !== educationId);
+
+    this.setState({
+      education: filteredEducation,
+    });
+  }
+
   render() {
     return (
       <div className="main-container">
@@ -309,6 +329,8 @@ class App extends Component {
           changeEducationEndDate={(e) => { this.changeEducationEndDate(e); }}
           submitAddWork={() => { this.submitAddWork(); }}
           submitAddEducation={() => { this.submitAddEducation(); }}
+          deleteWork={(e) => { this.deleteWork(e); }}
+          deleteEducation={(e) => { this.deleteEducation(e); }}
         />
         <Preview
           personalInfo={this.state.personalInfo}

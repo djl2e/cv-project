@@ -37,14 +37,15 @@ function Preview(props) {
         <h3 id="preview-education-header">Education</h3>
         {education.map((edu) => (
           <div className="preview-edu">
-            <div className="preview-edu-left">
-              <p className="preview-edu-school">{edu.school}</p>
+            <p className="preview-edu-school">{edu.school}</p>
+            <div className="preview-edu-right">
               <p className="preview-edu-degree">{edu.degree}</p>
-            </div>
-            <div className="preview-edu-date">
-              <p className="preview-edu-start-date">{edu.startDate}</p>
-              <p className="preview-edu-date-dash">-</p>
-              <p className="preview-edu-end-date">{edu.endDate}</p>
+              <p className="preview-work-divider">|</p>
+              <div className="preview-edu-date">
+                <p className="preview-edu-start-date">{edu.startDate}</p>
+                <p className="preview-edu-date-dash">-</p>
+                <p className="preview-edu-end-date">{edu.endDate}</p>
+              </div>
             </div>
           </div>
         ))}

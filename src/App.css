@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
 
 body {
   font-family: 'Roboto Flex', sans-serif;
@@ -18,20 +18,44 @@ body {
 
 .main-container h2 {
   margin: 20px 0 0 0;
+  font-weight: 600;
 }
 
 .main-container h3 {
-  margin: 0;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.main-container button {
+  margin-top: 10px;
+  background: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+
+.main-container button:hover {
+  transition: all 0.2s;
+  cursor: pointer;
+  background-color: black;
+  color: white;
 }
 
 .main-container textarea {
-  height: 60px;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 80px;
   width: 35vw;
 }
 
 .main-container input {
-  height: 20px;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 27px;
   width: 35vw;
+}
+
+.main-container p {
+  margin: 0;
 }
 
 .edit-container, .preview-container {
@@ -41,7 +65,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 0 40px 20px;
+  padding: 20px 40px 40px;
 }
 
 .edit-work-container, .edit-education-container {
@@ -50,10 +74,77 @@ body {
   gap: 10px;
 }
 
+#edit-personal-header {
+  margin-bottom: 10px;
+}
+
 .edit-personal-container, .edit-work, .edit-edu {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+
+.preview-container h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.preview-personal, .preview-work-experience, .preview-education {
+  width: 100%;
+}
+
+.preview-personal {
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 25px;
+  border-bottom: black 3px solid;
+}
+
+.preview-work-experience {
+  margin-top: 10px;
+}
+
+.preview-work, .preview-personal, .preview-work-info, .preview-work-info-right, .preview-work-date {
+  display: flex;
+}
+
+.preview-work {
+  flex-direction: column;
+  gap: 10px;
+}
+
+#preview-name {
+  margin: 0;
+  font-size: 32px;
+}
+
+.preview-work-info {
+  justify-content: space-between;
+}
+
+.preview-work-info-right {
+  gap: 5px;
+}
+
+.preview-work-date {
+  gap: 2px;
+}
+
+.preview-edu, .preview-edu-date, .preview-edu-right {
+  display: flex;
+}
+
+.preview-edu {
+  justify-content: space-between;
+}
+
+.preview-edu-right {
+  gap: 5px;
+}
+
+.preview-edu-date {
+  gap: 2px;
+}
+
 
