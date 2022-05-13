@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
 
+:root {
+  --body-background: rgba(220, 220, 220);
+  --form-background: rgba(250, 250, 250);
+}
+
 body {
   font-family: 'Roboto Flex', sans-serif;
+  background-color: var(--body-background);
   margin: 0;
   display: flex;
   justify-content: center;
@@ -28,7 +34,7 @@ body {
 
 .main-container button {
   margin-top: 10px;
-  background: none;
+  background: white;
   border-radius: 5px;
   padding: 5px 20px;
 }
@@ -59,8 +65,11 @@ body {
 }
 
 .edit-container, .preview-container {
+  background-color: var(--form-background);
   width: 37vw;
-  border: solid black 2px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 5px black;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -112,7 +121,8 @@ body {
   margin-top: 10px;
 }
 
-.preview-work, .preview-personal, .preview-work-info, .preview-work-info-right, .preview-work-date {
+.preview-work, .preview-personal, .preview-work-info, .preview-work-info-right, 
+.preview-work-date, .preview-edu, .preview-edu-date, .preview-edu-right {
   display: flex;
 }
 
@@ -126,32 +136,14 @@ body {
   font-size: 32px;
 }
 
-.preview-work-info {
+.preview-work-info, .preview-edu {
   justify-content: space-between;
 }
 
-.preview-work-info-right {
+.preview-work-info-right, .preview-edu-right {
   gap: 5px;
 }
 
-.preview-work-date {
+.preview-work-date, .preview-edu-date {
   gap: 2px;
 }
-
-.preview-edu, .preview-edu-date, .preview-edu-right {
-  display: flex;
-}
-
-.preview-edu {
-  justify-content: space-between;
-}
-
-.preview-edu-right {
-  gap: 5px;
-}
-
-.preview-edu-date {
-  gap: 2px;
-}
-
-
