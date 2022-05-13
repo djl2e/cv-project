@@ -2,19 +2,28 @@ import React from 'react';
 
 function EditWork(props) {
   const {
-    workExperience, changeWorkCompany, changeWorkPosition,
-    changeWorkStartDate, changeWorkEndDate, changeWorkDescription,
+    workExperience, changeWorkCompany, changeWorkPosition, changeWorkStartDate,
+    changeWorkEndDate, changeWorkDescription, deleteWork,
   } = props;
 
   return (
     <div className="edit-work-container">
       {workExperience.map((work, count) => (
         <div className="edit-work" id={work.workId} key={work.wokId}>
-          <h3 className="edit-work-subheader">
-            Work Experience
-            {' '}
-            {count + 1}
-          </h3>
+          <div className="edit-work-top">
+            <h3 className="edit-work-subheader">
+              Work Experience
+              {' '}
+              {count + 1}
+            </h3>
+            <button
+              className="delete-work-button"
+              onClick={deleteWork}
+              type="submit"
+            >
+              Delete
+            </button>
+          </div>
           <input
             className="edit-work-company"
             type="text"

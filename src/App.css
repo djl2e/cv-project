@@ -74,6 +74,13 @@ body {
   gap: 10px;
 }
 
+.edit-work-top, .edit-edu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 #edit-personal-header {
   margin-bottom: 10px;
 }

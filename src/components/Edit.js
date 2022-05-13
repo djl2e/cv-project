@@ -11,6 +11,7 @@ function Edit(props) {
     changeWorkEndDate, changeWorkDescription, changeEducationSchool,
     changeEducationDegree, changeEducationStartDate,
     changeEducationEndDate, submitAddWork, submitAddEducation,
+    deleteWork, deleteEducation,
   } = props;
 
   return (
@@ -31,6 +32,7 @@ function Edit(props) {
         changeWorkStartDate={(e) => { changeWorkStartDate(e); }}
         changeWorkEndDate={(e) => { changeWorkEndDate(e); }}
         changeWorkDescription={(e) => { changeWorkDescription(e); }}
+        deleteWork={(e) => { deleteWork(e); }}
       />
       <button id="add-work-button" onClick={submitAddWork} type="submit">Add Work Experience</button>
       <h2 id="edit-education-header">Education</h2>
@@ -40,6 +42,7 @@ function Edit(props) {
         changeEducationDegree={(e) => { changeEducationDegree(e); }}
         changeEducationStartDate={(e) => { changeEducationStartDate(e); }}
         changeEducationEndDate={(e) => { changeEducationEndDate(e); }}
+        deleteEducation={(e) => { deleteEducation(e); }}
       />
       <button id="add-education-header" onClick={submitAddEducation} type="submit">Add Education</button>
     </div>

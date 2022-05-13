@@ -288,7 +288,7 @@ class App extends Component {
   }
 
   deleteWork(e) {
-    const workId = e.target.parentNode.id;
+    const workId = e.target.parentNode.parentNode.id;
     const newWork = [...this.state.workExperience];
     const filteredWork = newWork.filter((work) => work.workId !== workId);
 
@@ -298,7 +298,7 @@ class App extends Component {
   }
 
   deleteEducation(e) {
-    const educationId = e.target.parentNode.id;
+    const educationId = e.target.parentNode.parentNode.id;
     const newEducation = [...this.state.education];
     const filteredEducation = newEducation.filter((edu) => edu.educationId !== educationId);
 
